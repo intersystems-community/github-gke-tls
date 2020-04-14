@@ -134,6 +134,7 @@ jobs:
         kubectl create secret generic external-dns --from-file=./credentials.json --dry-run -o yaml | kubectl apply -f -
         ./helm upgrade external-dns bitnami/external-dns \
           --install                                      \
+          --atomic                                       \
           --version=${EXTERNAL_DNS_CHART_VERSION}        \
           --set provider=google                          \
           --set google.project=${PROJECT_ID}             \
